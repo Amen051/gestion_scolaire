@@ -1,0 +1,35 @@
+body { font-family: 'Poppins', sans-serif; background: #f4f7f6; color: #333; padding: 40px 20px; }
+.admin-container { max-width: 900px; margin: 0 auto; }
+h1 { color: #004a99; margin-bottom: 5px; }
+.subtitle { margin-bottom: 30px; color: #666; font-style: italic; }
+
+.msg-grid { display: grid; gap: 20px; }
+
+.msg-card { 
+    background: #fff; border-left: 5px solid #004a99; 
+    padding: 20px; border-radius: 8px; 
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+.msg-header { 
+    display: flex; justify-content: space-between; 
+    border-bottom: 1px solid #eee; padding-bottom: 10px; margin-bottom: 15px;
+    font-size: 0.9rem; font-weight: 600; color: #555;
+}
+
+.msg-body { margin-bottom: 20px; line-height: 1.6; color: #444; }
+
+.msg-footer { 
+    display: flex; justify-content: space-between; align-items: center; 
+    font-size: 0.85rem; color: #888;
+}
+
+.btn-lu { 
+    background: #28a745; color: white; border: none; 
+    padding: 6px 15px; border-radius: 4px; cursor: pointer;
+    transition: 0.3s;
+}
+.btn-lu:hover { background: #218838; transform: scale(1.05); }
+
+.back-link { margin-top: 30px; text-align: center; }
+.back-link a { color: #004a99; text-decoration: none; font-weight: bold; }

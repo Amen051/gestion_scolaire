@@ -1,0 +1,118 @@
+body {
+    background: #f4f6f9;
+    font-family: 'Segoe UI', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    background: #fff;
+    padding: 25px 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    width: 700px;
+}
+
+h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin-bottom: 5px;
+    color: #444;
+}
+
+input[type="text"],
+input[type="number"] {
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+button {
+    padding: 10px;
+    background: #4caf50;
+    color: white;
+    border: none;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+button:hover {
+    background: #388e3c;
+}
+
+.message {
+    background-color: #e7f3fe;
+    color: #31708f;
+    border: 1px solid #bce8f1;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    text-align: center;
+}
+.table-matieres {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    font-size: 14px;
+}
+
+.table-matieres thead {
+    background-color: #4caf50;
+    color: white;
+}
+
+.table-matieres th, .table-matieres td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: center;
+}
+
+.table-matieres tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+hr {
+    border: 1px solid #ccc;
+}
+.actions a {
+    padding: 6px 10px;
+    margin-right: 5px;
+    text-decoration: none;
+    border-radius: 4px;
+    font-size: 13px;
+}
+
+.actions a.edit {
+    background-color: #ffcc00;
+    color: #000;
+}
+
+.actions a.delete {
+    background-color: #ff4444;
+    color: #fff;
+}
+
+.cancel {
+    display: inline-block;
+    margin-top: 10px;
+    text-decoration: none;
+    background-color: #999;
+    color: white;
+    padding: 6px 10px;
+    border-radius: 4px;
+}

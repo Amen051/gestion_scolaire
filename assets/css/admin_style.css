@@ -1,0 +1,114 @@
+/* Style Général Admin */
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f4f7f6;
+    color: #333;
+    margin: 0;
+    padding: 40px 20px;
+}
+
+.admin-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+}
+
+h1 {
+    color: #004a99;
+    margin-bottom: 25px;
+    font-size: 1.8rem;
+}
+
+/* Boutons */
+.btn-add {
+    display: inline-block;
+    background-color: #28a745;
+    color: white;
+    text-decoration: none;
+    padding: 12px 20px;
+    border-radius: 6px;
+    font-weight: 600;
+    margin-bottom: 25px;
+    transition: background 0.3s;
+}
+
+.btn-add:hover {
+    background-color: #218838;
+}
+
+/* Tableau des actualités */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+thead {
+    background-color: #004a99;
+    color: white;
+}
+
+th, td {
+    text-align: left;
+    padding: 15px;
+    border-bottom: 1px solid #eee;
+}
+
+tr:hover {
+    background-color: #f9f9f9;
+}
+
+/* Image dans le tableau */
+td img {
+    border-radius: 4px;
+    object-fit: cover;
+    height: 40px;
+    width: 60px;
+    display: block;
+}
+
+/* Statut (Badge) */
+td:nth-child(4) {
+    font-weight: 600;
+    text-transform: capitalize;
+}
+
+/* Actions */
+a[style*="color:red"] {
+    text-decoration: none;
+    font-weight: 600;
+    padding: 5px 10px;
+    border: 1px solid red;
+    border-radius: 4px;
+    transition: 0.3s;
+}
+
+a[style*="color:red"]:hover {
+    background-color: red;
+    color: white !important;
+}
+
+/* Lien Retour */
+a[href="dashboard.php"] {
+    display: inline-block;
+    margin-top: 20px;
+    color: #666;
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+
+a[href="dashboard.php"]:hover {
+    color: #004a99;
+    text-decoration: underline;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    th:nth-child(1), td:nth-child(1), /* Cache l'image sur petit mobile */
+    th:nth-child(3), td:nth-child(3) { /* Cache la date */
+        display: none;
+    }
+}

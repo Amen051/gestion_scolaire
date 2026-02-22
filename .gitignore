@@ -1,0 +1,7 @@
+/vendor/
+
+# Fichiers système et cache
+.DS_Store
+Thumbs.db
+*.log
+EOT
