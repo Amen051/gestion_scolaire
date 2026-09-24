@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.2.3
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : mar. 08 juil. 2025 à 19:15
--- Version du serveur : 8.3.0
--- Version de PHP : 8.2.18
+-- Généré le : jeu. 24 sep. 2026 à 12:37
+-- Version du serveur : 8.4.7
+-- Version de PHP : 8.3.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,15 +24,32 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `actualites`
+--
+
+DROP TABLE IF EXISTS `actualites`;
+CREATE TABLE IF NOT EXISTS `actualites` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `titre` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `contenu` text COLLATE utf8mb4_general_ci NOT NULL,
+  `image_url` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `date_publication` datetime DEFAULT CURRENT_TIMESTAMP,
+  `statut` enum('public','brouillon') COLLATE utf8mb4_general_ci DEFAULT 'public',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `admins`
 --
 
 DROP TABLE IF EXISTS `admins`;
 CREATE TABLE IF NOT EXISTS `admins` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `nom` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
-  `email` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
-  `mot_de_passe` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `nom` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `email` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `mot_de_passe` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `created_at` datetime DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`)
@@ -54,7 +71,7 @@ INSERT INTO `admins` (`id`, `nom`, `email`, `mot_de_passe`, `created_at`) VALUES
 DROP TABLE IF EXISTS `classes`;
 CREATE TABLE IF NOT EXISTS `classes` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `nom_classe` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `nom_classe` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `created_at` datetime DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -78,15 +95,15 @@ INSERT INTO `classes` (`id`, `nom_classe`, `created_at`) VALUES
 DROP TABLE IF EXISTS `eleves`;
 CREATE TABLE IF NOT EXISTS `eleves` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `nom` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
-  `prenom` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
+  `nom` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `prenom` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `date_naissance` date DEFAULT NULL,
-  `sexe` enum('M','F') COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `sexe` enum('M','F') CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `created_at` datetime DEFAULT CURRENT_TIMESTAMP,
-  `email_parent` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `email_parent` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `contact_parent` int DEFAULT NULL,
   `ecolage` int NOT NULL,
-  `classe` varchar(10) COLLATE utf8mb4_general_ci NOT NULL,
+  `classe` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -118,9 +135,9 @@ DROP TABLE IF EXISTS `enseignement`;
 CREATE TABLE IF NOT EXISTS `enseignement` (
   `id` int NOT NULL AUTO_INCREMENT,
   `prof_id` int DEFAULT NULL,
-  `matiere` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `classe` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `jour` varchar(20) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `matiere` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `classe` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `jour` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `heure_debut` time DEFAULT NULL,
   `heure_fin` time DEFAULT NULL,
   PRIMARY KEY (`id`),
@@ -174,7 +191,7 @@ INSERT INTO `enseignement` (`id`, `prof_id`, `matiere`, `classe`, `jour`, `heure
 DROP TABLE IF EXISTS `matieres`;
 CREATE TABLE IF NOT EXISTS `matieres` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `nom_matiere` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
+  `nom_matiere` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `created_at` datetime DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -196,6 +213,22 @@ INSERT INTO `matieres` (`id`, `nom_matiere`, `created_at`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `messages_visiteurs`
+--
+
+DROP TABLE IF EXISTS `messages_visiteurs`;
+CREATE TABLE IF NOT EXISTS `messages_visiteurs` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `email` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `contact` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `message` text COLLATE utf8mb4_general_ci NOT NULL,
+  `date_envoi` datetime DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `notes`
 --
 
@@ -203,12 +236,12 @@ DROP TABLE IF EXISTS `notes`;
 CREATE TABLE IF NOT EXISTS `notes` (
   `id` int NOT NULL AUTO_INCREMENT,
   `eleve_id` int NOT NULL,
-  `matiere` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `matiere` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `trimestre` enum('Trimestre 1','Trimestre 2','Trimestre 3') CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `note_devoir` float NOT NULL,
   `date_saisie` datetime DEFAULT CURRENT_TIMESTAMP,
   `professeur_id` int NOT NULL,
-  `classe` varchar(10) COLLATE utf8mb4_general_ci NOT NULL,
+  `classe` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `coefficient` int NOT NULL,
   `note_composition` int NOT NULL,
   PRIMARY KEY (`id`),
@@ -261,10 +294,10 @@ INSERT INTO `notes` (`id`, `eleve_id`, `matiere`, `trimestre`, `note_devoir`, `d
 DROP TABLE IF EXISTS `professeurs`;
 CREATE TABLE IF NOT EXISTS `professeurs` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `nom` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
-  `email` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
-  `telephone` varchar(20) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `mot_de_passe` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `nom` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `email` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `telephone` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `mot_de_passe` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `created_at` datetime DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`)
